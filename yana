@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+file = ARGV[0]
+
+abort "file absent" unless File.exist?(file || "")
+lines = File.open(file, "r").to_a
+
+lines.each_with_index do |line, i|
+  if !(/^[\s]*[a-zA-Z0-9_\-\.]+:\s+/ =~ line || line.strip == "")
+    puts "[#{i}]#{line}"
+  end
+end
